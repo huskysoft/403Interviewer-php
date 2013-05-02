@@ -1,6 +1,6 @@
 <?php
 	/*
-	* This script congains the request parameter names to be used throughout
+	* This script contains the request parameter names to be used throughout
 	* the PHP layer.
 	*/
 	$PARAM_LIMIT = 'limit';

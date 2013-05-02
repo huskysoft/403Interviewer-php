@@ -1,7 +1,6 @@
 <?php
 	/*
-	* This script handles getQuestions requests. Requests can be filtered by
-	* by difficulty and/or category. Pagination is supported.
+	* This script handles getSolutions requests. Pagination is supported.
 	*/
 	require('../util/requestParams.php');
 	require('../util/db_tables.php');
