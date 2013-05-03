@@ -7,7 +7,10 @@
 	$SELECT_ALL = "SELECT *";
 	$SELECT_COUNT = "SELECT COUNT(*)";
 	$FROM = " FROM ";
-	$LIMIT_OFFSET = " LIMIT " . $limit . " OFFSET " . $offset;
+	
+	function getLimitOffsetQuery($limit, $offset) {
+		return " LIMIT " . $limit . " OFFSET " . $offset;
+	}
 
 	function executeQuery($query) {
 		// connect to DB		

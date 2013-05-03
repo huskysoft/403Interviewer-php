@@ -19,10 +19,11 @@
 	$limit = (isset($_GET[$PARAM_LIMIT])) ? 
 		filter_var($_GET[$PARAM_LIMIT], FILTER_SANITIZE_NUMBER_INT) : "ALL";
 	$offset = (isset($_GET[$PARAM_OFFSET])) ?
-		filter_var($_GET[$PARAM_OFFSET], FILTER_SANITIZE_NUMBER_INT) : "0"; 	
+		filter_var($_GET[$PARAM_OFFSET], FILTER_SANITIZE_NUMBER_INT) : "0";
+	$limitOffsetSQL = getLimitOffsetQuery($limit, $offset);
 	
 	// get questions and convert to JSON
-	$query = $SELECT_ALL . $FROM . $TABLE_QUESTION . $where . $LIMIT_OFFSET;
+	$query = $SELECT_ALL . $FROM . $TABLE_QUESTION . $where . $limitOffsetSQL;
 	$rs = executeQuery($query);
 	$jsonResults = convertToJSON($rs);
 	
