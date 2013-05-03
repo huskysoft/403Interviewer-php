@@ -4,6 +4,7 @@
 	*/
 	require('../util/requestParams.php');
 	require('../util/db_tables.php');
+	require('../util/queryTools.php');
 	
 	// parse questionId
 	if (!isset($_GET[$COLUMN_SOLUTION_QUESTIONID])) {
@@ -26,6 +27,8 @@
 	$query = $query . " LIMIT " . $limit;
 	$query = $query . " OFFSET " . $offset;
 	
-	// execute query
-	include('../util/executeQuery.php');
+	// execute query and return JSON
+	$rs = executeQuery($query);
+	$json = convertToJSON($rs);
+	echo $json;
 ?>
