@@ -3,21 +3,17 @@
 	* This script contains functions to execute a PostgreSQL query and process
 	* response values response in JSON format
 	*/
-	require('db_credentials.php');
-	require('db_tables.php');
-	
-	function connect() {
-		// connect to DB
+
+	function executeQuery($query) {
+		// connect to DB		
+		require('db_credentials.php');
 		$sslmode = "require";
 		$options = "'--client_encoding=UTF8'";
 		$con = pg_connect("host=$host dbname=$db port=$port user=$user 
 			password=$pass sslmode=$sslmode options=$options")
 			or die('Could not connect: ' . pg_last_error());
-	}
-
-
-	function executeQuery($query) {
-		connect();
+			
+		// execute query
 		$rs = pg_query($con, $query) 
 			or die("Invaid query: $query\n");
 		return $rs;
