@@ -21,19 +21,13 @@
 	$offset = (isset($_GET[$PARAM_OFFSET])) ?
 		filter_var($_GET[$PARAM_OFFSET], FILTER_SANITIZE_NUMBER_INT) : "0"; 	
 	
-	// build query
-	$selectAll = "SELECT *";
-	$selectCount = "SELECT COUNT(*)";
-	$table = " FROM " . $TABLE_SOLUTION;
-	$limitOffset = " LIMIT " . $limit . " OFFSET " . $offset;
-	
 	// get solutions and convert to JSON
-	$query = $selectAll . $table . $where . $limitOffset;
+	$query = $SELECT_ALL . $FROM . $TABLE_SOLUTION . $where . $LIMIT_OFFSET;
 	$rs = executeQuery($query);
 	$jsonResults = convertToJSON($rs);
 	
 	// get total number of results
-	$query = $selectCount . $table . $where;
+	$query = $SELECT_COUNT . $FROM . $TABLE_SOLUTION . $where;
 	$rs = executeQuery($query);
 	$totalNum = pg_fetch_result($rs, 0, 0);
 	

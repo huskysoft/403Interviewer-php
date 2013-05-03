@@ -5,7 +5,7 @@
 	*/
 	require('../util/requestParams.php');
 	require('../util/db_tables.php');
-	require('../util/queryTools.php');
+	require('../util/queryTools.php');	
 	
 	// parse filtering parameters
 	if (isset($_GET[$COLUMN_QUESTION_DIFFICULTY])) {
@@ -21,19 +21,13 @@
 	$offset = (isset($_GET[$PARAM_OFFSET])) ?
 		filter_var($_GET[$PARAM_OFFSET], FILTER_SANITIZE_NUMBER_INT) : "0"; 	
 	
-	// build query
-	$selectAll = "SELECT *";
-	$selectCount = "SELECT COUNT(*)";
-	$table = " FROM " . $TABLE_QUESTION;
-	$limitOffset = " LIMIT " . $limit . " OFFSET " . $offset;
-	
 	// get questions and convert to JSON
-	$query = $selectAll . $table . $limitOffset;
+	$query = $SELECT_ALL . $FROM . $TABLE_QUESTION . $where . $LIMIT_OFFSET;
 	$rs = executeQuery($query);
 	$jsonResults = convertToJSON($rs);
 	
 	// get total number of results
-	$query = $selectCount . $table;
+	$query = $SELECT_COUNT . $FROM . $TABLE_QUESTION . $where;
 	$rs = executeQuery($query);
 	$totalNum = pg_fetch_result($rs, 0, 0);
 	

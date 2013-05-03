@@ -1,8 +1,13 @@
 <?php
 	/*
-	* This script contains functions to execute a PostgreSQL query and process
-	* response values response in JSON format
+	* This script contains functions and constants to execute a PostgreSQL
+	* queries and process response values
 	*/
+	
+	$SELECT_ALL = "SELECT *";
+	$SELECT_COUNT = "SELECT COUNT(*)";
+	$FROM = " FROM ";
+	$LIMIT_OFFSET = " LIMIT " . $limit . " OFFSET " . $offset;
 
 	function executeQuery($query) {
 		// connect to DB		
@@ -15,7 +20,7 @@
 			
 		// execute query
 		$rs = pg_query($con, $query) 
-			or die("Invaid query: $query\n");
+			or die("Invalid query: $query\n");
 		return $rs;
 	}
 	
