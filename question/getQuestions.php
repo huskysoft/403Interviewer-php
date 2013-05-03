@@ -37,6 +37,7 @@
 	$rs = executeQuery($query);
 	$totalNum = pg_fetch_result($rs, 0, 0);
 	
+	// build and return paginatedResults JSON
 	$arr = array($PARAM_RESULTS => $jsonResults,
 				 $PARAM_TOTAL_NUM_RESULTS => $totalNum,
 				 $PARAM_LIMIT => $limit,
