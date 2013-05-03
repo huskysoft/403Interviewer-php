@@ -7,7 +7,8 @@
 	
 	// parse questionId
 	if (!isset($_GET[$COLUMN_SOLUTION_QUESTIONID])) {
-		echo "Invalid request: no questionId specified";
+		header(':', true, 400);	// HTTP response code 400: bad request
+		echo "Invalid request: no questionId specified";		
 		exit;
 	}
 	$where = " WHERE \"". $COLUMN_SOLUTION_QUESTIONID . "\"=" .
