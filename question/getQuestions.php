@@ -22,13 +22,21 @@
 		filter_var($_GET[$PARAM_OFFSET], FILTER_SANITIZE_NUMBER_INT) : "0"; 	
 	
 	// build query
-	$query = "SELECT * FROM " . $TABLE_QUESTION;
-	$query = $query . $where;
-	$query = $query . " LIMIT " . $limit;
-	$query = $query . " OFFSET " . $offset;
+	$selectAll = "SELECT *";
+	$selectCount = "SELECT COUNT(*)";
+	$table = " FROM " . $TABLE_QUESTION;
+	$limitOffset = " LIMIT " . $limit . " OFFSET " . $offset;
 	
-	// execute query and return JSON
+	// get questions and convert to JSON
+	$query = $selectAll . $table . $limitOffset;
 	$rs = executeQuery($query);
-	$json = convertToJSON($rs);
-	echo $json;
+	$jsonResults = convertToJSON($rs);
+	
+	// get total number of results
+	$query = $selectCount . $table . $limitOffset;
+	$totalNum - executeQuery(
+	
+	$arr = array('results' => $jsonResults, 'totalNumberOfResults' => $totalNum,
+				 'limit' => $limit, 'offset' => $offset);
+	echo json_encode($arr);
 ?>
