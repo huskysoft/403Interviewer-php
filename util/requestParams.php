@@ -9,4 +9,9 @@
 	$PARAM_DIFFICULTY = 'difficulty';
 	$PARAM_QUESTIONID = 'questionId';
 	$PARAM_CATEGORY = 'category';
+	
+	$PARAM_RESULTS = 'results';
+	$PARAM_TOTAL_NUM_RESULTS = 'totalNumberOfResults';
+	$PARAM_LIMIT = 'limit';
+	$PARAM_OFFSET = 'offset';
 ?>

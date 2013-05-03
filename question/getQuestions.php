@@ -33,10 +33,13 @@
 	$jsonResults = convertToJSON($rs);
 	
 	// get total number of results
-	$query = $selectCount . $table . $limitOffset;
-	$totalNum - executeQuery(
+	$query = $selectCount . $table;
+	$rs = executeQuery($query);
+	$totalNum = pg_fetch_result($rs, 0, 0);
 	
-	$arr = array('results' => $jsonResults, 'totalNumberOfResults' => $totalNum,
-				 'limit' => $limit, 'offset' => $offset);
+	$arr = array($PARAM_RESULTS => $jsonResults,
+				 $PARAM_TOTAL_NUM_RESULTS => $totalNum,
+				 $PARAM_LIMIT => $limit,
+				 $PARAM_OFFSET => $offset);
 	echo json_encode($arr);
 ?>
