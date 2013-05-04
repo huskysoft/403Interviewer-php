@@ -5,6 +5,7 @@
 	*/
 	require('../util/requestParams.php');
 	require('../util/db_tables.php');
+	require('../util/queryTools.php');	
 	
 	// parse filtering parameters
 	if (isset($_GET[$COLUMN_QUESTION_DIFFICULTY])) {
@@ -18,14 +19,23 @@
 	$limit = (isset($_GET[$PARAM_LIMIT])) ? 
 		filter_var($_GET[$PARAM_LIMIT], FILTER_SANITIZE_NUMBER_INT) : "ALL";
 	$offset = (isset($_GET[$PARAM_OFFSET])) ?
-		filter_var($_GET[$PARAM_OFFSET], FILTER_SANITIZE_NUMBER_INT) : "0"; 	
+		filter_var($_GET[$PARAM_OFFSET], FILTER_SANITIZE_NUMBER_INT) : "0";
+	$limitOffsetSQL = getLimitOffsetQuery($limit, $offset);
 	
-	// build query
-	$query = "SELECT * FROM " . $TABLE_QUESTION;
-	$query = $query . $where;
-	$query = $query . " LIMIT " . $limit;
-	$query = $query . " OFFSET " . $offset;
+	// get questions and convert to JSON
+	$query = $SELECT_ALL . $FROM . $TABLE_QUESTION . $where . $limitOffsetSQL;
+	$rs = executeQuery($query);
+	$jsonResults = convertToJSON($rs);
 	
-	// execute query
-	include('../util/executeQuery.php');
+	// get total number of results
+	$query = $SELECT_COUNT . $FROM . $TABLE_QUESTION . $where;
+	$rs = executeQuery($query);
+	$totalNum = pg_fetch_result($rs, 0, 0);
+	
+	// build and return paginatedResults JSON
+	$arr = array($PARAM_RESULTS => $jsonResults,
+				 $PARAM_TOTAL_NUM_RESULTS => $totalNum,
+				 $PARAM_LIMIT => $limit,
+				 $PARAM_OFFSET => $offset);
+	echo json_encode($arr);
 ?>
