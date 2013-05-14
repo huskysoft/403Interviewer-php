@@ -7,8 +7,10 @@
 	$PARAM_OFFSET = 'offset';
 	$PARAM_AUTHORID = 'authorId';
 	$PARAM_DIFFICULTY = 'difficulty';
-	$PARAM_QUESTIONID = 'questionId';
 	$PARAM_CATEGORY = 'category';
+	$PARAM_QUESTIONID = 'questionId';
+
+	$CATEGORY_DELIM = '-';
 	
 	$PARAM_RESULTS = 'results';
 	$PARAM_TOTAL_NUM_RESULTS = 'totalNumberOfResults';
