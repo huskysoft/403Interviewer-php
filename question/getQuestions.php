@@ -7,14 +7,38 @@
 	require('../util/db_tables.php');
 	require('../util/queryTools.php');	
 	
+	$diffSet = false;
 	// parse filtering parameters
 	if (isset($_GET[$COLUMN_QUESTION_DIFFICULTY])) {
+		$diffSet = true;
 		$where = " WHERE \"". $COLUMN_QUESTION_DIFFICULTY . "\"=" .
-			filter_var($_GET[$PARAM_DIFFICULTY], FILTER_SANITIZE_NUMBER_INT);
+			"'" . filter_var($_GET[$PARAM_DIFFICULTY], FILTER_SANITIZE_STRING)
+				. "'";
 	} else {
 		$where = "";
 	}
 	
+	if (isset($_GET[$COLUMN_QUESTION_CATEGORY])) {
+		$categories = filter_var($_GET[$PARAM_CATEGORY], FILTER_SANITIZE_STRING);
+		$categoryArr = explode($CATEGORY_DELIM, $categories);
+		if ($diffSet) {
+			$where .= " AND";
+		}
+		else {
+			$where .= " WHERE ";
+		}
+		$where .= " (";
+		$appendOr = false;
+		foreach ($categoryArr as $filter) {
+			if ($appendOr) {
+				$where .= " OR ";
+			}
+			$appendOr = true;
+			$where .= ("\"" . $COLUMN_QUESTION_CATEGORY . "\"=" . "'" . $filter . "'");
+		}
+		$where .= ")";
+	}
+
 	// parse pagination parameters
 	$limit = (isset($_GET[$PARAM_LIMIT])) ? 
 		filter_var($_GET[$PARAM_LIMIT], FILTER_SANITIZE_NUMBER_INT) : "ALL";
