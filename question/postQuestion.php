@@ -18,12 +18,12 @@
 	require('../util/queryTools.php');
 	
 	// parse JSON payload
-	$authorId = $_POST[$COLUMN_QUESTION_AUTHORID];
-	$questionText = $_POST[$COLUMN_QUESTION_TEXT];
-	$questionTitle = $_POST[$COLUMN_QUESTION_TITLE];
-	$questionDifficulty = $_POST[$COLUMN_QUESTION_DIFFICULTY];
-	$questionCategory = $_POST[$COLUMN_QUESTION_CATEGORY];
-	$dateCreated = $_POST[$COLUMN_QUESTION_DATE];
+	$authorId = filter_var($_POST[$COLUMN_QUESTION_AUTHORID], FILTER_SANITIZE_NUMBER_INT);
+	$questionText = filter_var($_POST[$COLUMN_QUESTION_TEXT], FILTER_SANITIZE_STRING);
+	$questionTitle = filter_var($_POST[$COLUMN_QUESTION_TITLE], FILTER_SANITIZE_STRING);
+	$questionDifficulty = filter_var($_POST[$COLUMN_QUESTION_DIFFICULTY], FILTER_SANITIZE_STRING);
+	$questionCategory = filter_var($_POST[$COLUMN_QUESTION_CATEGORY], FILTER_SANITIZE_STRING);
+	$dateCreated = filter_var($_POST[$COLUMN_QUESTION_DATE], FILTER_SANITIZE_NUMBER_INT);
 		
 	// build query
 	$query = "INSERT INTO " . $TABLE_QUESTION . " VALUES ";

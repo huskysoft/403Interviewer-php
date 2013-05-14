@@ -18,10 +18,10 @@
 	require('../util/queryTools.php');
 	
 	// parse JSON payload
-	$questionId = $_POST[$COLUMN_SOLUTION_QUESTIONID];
-	$authorId = $_POST[$COLUMN_SOLUTION_AUTHORID];
-	$solutionText = $_POST[$COLUMN_SOLUTION_TEXT];
-	$dateCreated = $_POST[$COLUMN_SOLUTION_DATE];
+	$questionId = filter_var($_POST[$COLUMN_SOLUTION_QUESTIONID], FILTER_SANITIZE_NUMBER_INT);
+	$authorId = filter_var($_POST[$COLUMN_SOLUTION_AUTHORID], FILTER_SANITIZE_NUMBER_INT);
+	$solutionText = filter_var($_POST[$COLUMN_SOLUTION_TEXT], FILTER_SANITIZE_STRING);
+	$dateCreated = filter_var($_POST[$COLUMN_SOLUTION_DATE], FILTER_SANITIZE_NUMBER_INT);
 		
 	// build query
 	$query = "INSERT INTO " . $TABLE_SOLUTION . " VALUES ";

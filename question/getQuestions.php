@@ -12,13 +12,14 @@
 	if (isset($_GET[$COLUMN_QUESTION_DIFFICULTY])) {
 		$diffSet = true;
 		$where = " WHERE \"". $COLUMN_QUESTION_DIFFICULTY . "\"=" .
-			"'$_GET[$PARAM_DIFFICULTY]'";
+			"'" . filter_var($_GET[$PARAM_DIFFICULTY], FILTER_SANITIZE_STRING)
+				. "'";
 	} else {
 		$where = "";
 	}
 	
 	if (isset($_GET[$COLUMN_QUESTION_CATEGORY])) {
-		$categories = $_GET[$PARAM_CATEGORY];
+		$categories = filter_var($_GET[$PARAM_CATEGORY], FILTER_SANITIZE_STRING);
 		$categoryArr = explode($CATEGORY_DELIM, $categories);
 		if ($diffSet) {
 			$where .= " AND";
