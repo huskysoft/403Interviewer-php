@@ -47,7 +47,11 @@
 	$limitOffsetSQL = getLimitOffsetQuery($limit, $offset);
 	
 	// get questions and convert to JSON
-	$query = $SELECT_ALL . $FROM . $TABLE_QUESTION . $where . $limitOffsetSQL;
+	$order = $ORDER_BY_DATE;
+	if (isset($_GET[$PARAM_RANDOM])) {
+		$order = $ORDER_BY_RANDOM;
+	}
+	$query = $SELECT_ALL . $FROM . $TABLE_QUESTION . $where . $order . $limitOffsetSQL;
 	$rs = executeQuery($query);
 	$jsonResults = convertToJSON($rs);
 	

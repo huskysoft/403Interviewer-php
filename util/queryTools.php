@@ -7,6 +7,8 @@
 	$SELECT_ALL = "SELECT *";
 	$SELECT_COUNT = "SELECT COUNT(*)";
 	$FROM = " FROM ";
+	$ORDER_BY_DATE = " ORDER BY \"dateCreated\" DESC, \"questionId\" DESC";
+	$ORDER_BY_RANDOM = " ORDER BY random()";
 	
 	function getLimitOffsetQuery($limit, $offset) {
 		return " LIMIT " . $limit . " OFFSET " . $offset;
