@@ -16,4 +16,5 @@
 	$PARAM_TOTAL_NUM_RESULTS = 'totalNumberOfResults';
 	$PARAM_LIMIT = 'limit';
 	$PARAM_OFFSET = 'offset';
+	$PARAM_RANDOM = 'random';
 ?>
