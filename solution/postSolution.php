@@ -3,19 +3,15 @@
 	* This script handles postSolution requests. Requires user authentication.
 	* Returns the ID of the newly-created Solution.
 	*/
-	
-	// require secure connection
-	if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
-		$url = 'https://' . $_SERVER['HTTP_HOST']
-						  . $_SERVER['REQUEST_URI'];
-		header('Location: ' . $url);
-		exit("Secure connection required");
-	}
 
 	// load dependencies
 	require('../util/requestParams.php');
 	require('../util/db_tables.php');	
 	require('../util/queryTools.php');
+       require('../util/security.php');
+
+       // require secure connection
+       secureConnection();
 	
 	// parse JSON payload
 	$questionId = filter_var($_POST[$COLUMN_SOLUTION_QUESTIONID], FILTER_SANITIZE_NUMBER_INT);
