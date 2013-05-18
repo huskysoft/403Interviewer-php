@@ -20,11 +20,12 @@
 	$dateCreated = filter_var($_POST[$COLUMN_SOLUTION_DATE], FILTER_SANITIZE_NUMBER_INT);
 		
 	// build query
-	$query = "INSERT INTO " . $TABLE_SOLUTION . " VALUES ";
+	$query = $INSERT . $TABLE_SOLUTION . $VALUES;
 	$query .= ("(DEFAULT, " . $questionId . ", " . $authorId . ", ")
 	$query .= ("'$solutionText'" . ", " . $dateCreated . ", " . "0, 0)");
 	$query .= (" RETURNING \"" . $COLUMN_SOLUTION_SOLUTIONID . "\"");
 	
 	// execute query and return ID
-	echo executeQuery($query);
+	$rs = executeQuery($query);
+	echo pg_fetch_result($rs, 0, 0);
 ?>

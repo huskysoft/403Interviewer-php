@@ -21,4 +21,7 @@
 	$COLUMN_SOLUTION_DATE = "dateCreated";
 	$COLUMN_SOLUTION_LIKES = "likes";
 	$COLUMN_SOLUTION_DISLIKES = "dislikes";
+
+       $TABLE_USER = "\"User\"";
+       $COLUMN_USER_USERID = "userId";
 ?>

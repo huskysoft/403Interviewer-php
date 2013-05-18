@@ -11,7 +11,7 @@
 	// parse filtering parameters
 	if (isset($_GET[$COLUMN_QUESTION_DIFFICULTY])) {
 		$diffSet = true;
-		$where = " WHERE \"". $COLUMN_QUESTION_DIFFICULTY . "\"=" .
+		$where = $WHERE . "\"". $COLUMN_QUESTION_DIFFICULTY . "\"=" .
 			"'" . filter_var($_GET[$PARAM_DIFFICULTY], FILTER_SANITIZE_STRING)
 				. "'";
 	} else {
@@ -25,7 +25,7 @@
 			$where .= " AND";
 		}
 		else {
-			$where .= " WHERE ";
+			$where .= $WHERE;
 		}
 		$where .= " (";
 		$appendOr = false;
@@ -59,7 +59,6 @@
 	$query = $SELECT_COUNT . $FROM . $TABLE_QUESTION . $where;
 	$rs = executeQuery($query);
 	$totalNum = pg_fetch_result($rs, 0, 0);
-	
 	// build and return paginatedResults JSON
 	$arr = array($PARAM_RESULTS => $jsonResults,
 				 $PARAM_TOTAL_NUM_RESULTS => $totalNum,

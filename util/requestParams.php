@@ -17,5 +17,5 @@
 	$PARAM_LIMIT = 'limit';
 	$PARAM_OFFSET = 'offset';
 	$PARAM_RANDOM = 'random';
-       $PARAM_EMAIL = 'userEmail';
+       $PARAM_EMAIL = 'email';
 ?>
