@@ -12,7 +12,7 @@
 		echo "Invalid request: no questionId specified";		
 		exit;
 	}
-	$where = " WHERE \"". $COLUMN_SOLUTION_QUESTIONID . "\"=" .
+	$where = $WHERE . "\"". $COLUMN_SOLUTION_QUESTIONID . "\"=" .
 		filter_var($_GET[$PARAM_QUESTIONID], FILTER_SANITIZE_NUMBER_INT);
 	
 	// parse pagination parameters

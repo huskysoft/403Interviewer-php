@@ -6,7 +6,11 @@
 	
 	$SELECT_ALL = "SELECT *";
 	$SELECT_COUNT = "SELECT COUNT(*)";
+       $SELECT = "SELECT ";
 	$FROM = " FROM ";
+       $WHERE = " WHERE ";
+       $INSERT = "INSERT INTO ";
+       $VALUES = " VALUES ";
 	$ORDER_BY_DATE = " ORDER BY \"dateCreated\" DESC, \"questionId\" DESC";
 	$ORDER_BY_RANDOM = " ORDER BY random()";
 	
