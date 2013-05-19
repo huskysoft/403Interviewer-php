@@ -6,17 +6,15 @@
 	*/
 	require('../util/requestParams.php');
 	require('../util/queryTools.php');
-       require('../util/db_tables.php');
-       require('../util/security.php');	
+	require('../util/db_tables.php');
+	require('../util/security.php');
 	
-       secureConnection();
-	
-       // parse GET parameter
-       $email = filter_var($_GET[$PARAM_EMAIL], FILTER_SANITIZE_STRING);
+	// parse GET parameter
+	$email = filter_var($_GET[$PARAM_EMAIL], FILTER_SANITIZE_STRING);
 
-       $query = $SELECT . "\"" . $COLUMN_USER_USERID . "\"" . $FROM .
-		$TABLE_USER . $WHERE . "\"" . $PARAM_EMAIL . "\"=" . "'" . $email . "'";
-       $rs = executeQuery($query);
+	$query = $SELECT . "\"" . $COLUMN_USER_USERID . "\"" . $FROM .
+	$TABLE_USER . $WHERE . "\"" . $PARAM_EMAIL . "\"=" . "'" . $email . "'";
+	$rs = executeQuery($query);
        
 	$totalRows = pg_num_rows($rs);
 	// If email wasn't already in the database, then issue new query inserting
