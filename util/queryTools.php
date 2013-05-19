@@ -6,11 +6,13 @@
 	
 	$SELECT_ALL = "SELECT *";
 	$SELECT_COUNT = "SELECT COUNT(*)";
-       $SELECT = "SELECT ";
+	$SELECT = "SELECT ";
+	$DELETE = "DELETE ";
 	$FROM = " FROM ";
-       $WHERE = " WHERE ";
-       $INSERT = "INSERT INTO ";
-       $VALUES = " VALUES ";
+	$WHERE = " WHERE ";
+	$AND = " AND ";
+	$INSERT = "INSERT INTO ";
+	$VALUES = " VALUES ";
 	$ORDER_BY_DATE = " ORDER BY \"dateCreated\" DESC, \"questionId\" DESC";
 	$ORDER_BY_RANDOM = " ORDER BY random()";
 	
@@ -28,11 +30,10 @@
 			or die('Could not connect: ' . pg_last_error());
 			
 		// execute query
-		$rs = pg_query($con, $query) 
+		$rs = pg_query($con, $query)
 			or die("Invalid query: $query\n");
 		return $rs;
 	}
-	
 
 	function convertToJSON($rs) {	
 		// parse results
@@ -43,5 +44,25 @@
 		// convert to JSON
 		$json = json_encode($rows);
 		return $json;
+	}
+	
+	function getUserId($email) {
+		require('requestParams.php');
+		require('db_tables.php');
+		global $SELECT;
+		global $FROM;
+		global $WHERE;
+		
+		$query = $SELECT . "\"" . $COLUMN_USER_USERID . "\"" . $FROM .
+		$TABLE_USER . $WHERE . "\"" . $PARAM_EMAIL . "\"=" . "'" . $email . "'";
+		$rs = executeQuery($query);
+
+		$totalRows = pg_num_rows($rs);
+		// if user was not found, return -1
+		if ($totalRows == 1) {
+			return pg_fetch_result($rs, 0, 0);
+		} else {
+			return -1;
+		}
 	}
 ?>
