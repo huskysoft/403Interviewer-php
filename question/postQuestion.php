@@ -3,14 +3,9 @@
 	* This script handles postQuestion requests. Requires user authentication.
 	* Returns the ID of the newly-created Question.
 	*/
-	
-	// require secure connection
-	if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) {
-		header("HTTP/1.1 301 Moved Permanently");
-		exit("Secure connection required");
-	}
 
 	// load dependencies
+	require('../util/security.php');
 	require('../util/requestParams.php');
 	require('../util/db_tables.php');	
 	require('../util/queryTools.php');
@@ -30,8 +25,9 @@
 	$query .= ("(DEFAULT, " . $authorId . ", " . $questionText . ", " . $questionTitle);
 	$query .= (", 0, 0, " . $questionDifficulty . ", " . $questionCategory);
 	$query .= (", " . $dateCreated . ")");
-	$query .= (" RETURNING '" . $COLUMN_QUESTION_QUESTIONID . "'");
+	$query .= (" RETURNING \"" . $COLUMN_QUESTION_QUESTIONID . "\"");
 	
 	// execute query and return ID
-	echo executeQuery($query);
+	$rs = executeQuery($query);
+	echo pg_fetch_result($rs, 0, 0);
 ?>
