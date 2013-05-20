@@ -9,6 +9,7 @@
 	$PARAM_DIFFICULTY = 'difficulty';
 	$PARAM_CATEGORY = 'category';
 	$PARAM_QUESTIONID = 'questionId';
+	$PARAM_SOLUTIONID = 'solutionId';
 
 	$CATEGORY_DELIM = '-';
 	

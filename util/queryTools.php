@@ -15,6 +15,7 @@
 	$VALUES = " VALUES ";
 	$ORDER_BY_DATE = " ORDER BY \"dateCreated\" DESC, \"questionId\" DESC";
 	$ORDER_BY_RANDOM = " ORDER BY random()";
+	$RETURNING = " RETURNING ";
 	
 	function getLimitOffsetQuery($limit, $offset) {
 		return " LIMIT " . $limit . " OFFSET " . $offset;
