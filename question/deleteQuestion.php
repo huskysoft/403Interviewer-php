@@ -23,6 +23,13 @@
 	// prepare query
 	$query = $DELETE . $FROM . $TABLE_QUESTION . $WHERE . "\"" . 
 		$PARAM_QUESTIONID . "\"=" . "'" . $questionId . "'" . $AND . "\"" .
-		$PARAM_AUTHORID . "\"=" . "'" . $userId . "'";
-	executeQuery($query);
+		$PARAM_AUTHORID . "\"=" . "'" . $userId . "'" . $RETURNING .
+		"\"" . $COLUMN_QUESTION_QUESTIONID . "\"";
+	$rs = executeQuery($query);
+	if ($rs) {
+		echo pg_fetch_result($rs, 0, 0);
+	}
+	else {
+		echo "0";
+	}
 ?>
