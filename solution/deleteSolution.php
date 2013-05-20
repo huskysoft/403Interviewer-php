@@ -23,7 +23,7 @@
 	// prepare query
 	$query = $DELETE . $FROM . $TABLE_SOLUTION . $WHERE . "\"" . 
 		$PARAM_SOLUTIONID . "\"=" . "'" . $solutionId . "'" . $AND . "\"" .
-		$PARAM_AUTHORID . "\"=" . "'" . $userId . "'" . . $RETURNING . "\"" .
+		$PARAM_AUTHORID . "\"=" . "'" . $userId . "'" . $RETURNING . "\"" .
 		$COLUMN_SOLUTION_SOLUTIONID . "\"";
 	$rs = executeQuery($query);
 	if ($rs) {

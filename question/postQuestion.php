@@ -21,7 +21,7 @@
 	$dateCreated = filter_var($json->$COLUMN_QUESTION_DATE, FILTER_SANITIZE_NUMBER_INT);
 		
 	// build query
-	$query = "INSERT INTO " . $TABLE_QUESTION . " VALUES ";
+	$query = $INSERT . $TABLE_QUESTION . $VALUES;
 	$query .= ("(DEFAULT, " . $authorId . ", " . $questionText . ", " . $questionTitle);
 	$query .= (", 0, 0, " . $questionDifficulty . ", " . $questionCategory);
 	$query .= (", " . $dateCreated . ")");
