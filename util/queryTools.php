@@ -31,9 +31,13 @@
 			or die('Could not connect: ' . pg_last_error());
 			
 		// execute query
-		$rs = pg_query($con, $query)
-			or die("Invalid query: $query\n");
-		return $rs;
+		$rs = pg_query($con, $query);
+		if ($rs) {
+			return $rs;
+		} else {
+			header("HTTP/1.1 400 Bad Request");
+			exit("Invalid query: $query\n");
+		}
 	}
 
 	function convertToJSON($rs) {	
