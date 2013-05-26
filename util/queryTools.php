@@ -66,4 +66,15 @@
 			return -1;
 		}
 	}
+	
+	function appendWhereClause($where, $newClause) {
+		global $WHERE;
+		global $AND;
+		if (strlen($where) == 0) {
+			$where .= $WHERE;
+		} else {
+			$where .= $AND;
+		}
+		return $where . $newClause;
+	}
 ?>

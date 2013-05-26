@@ -7,36 +7,37 @@
 	require('../util/db_tables.php');
 	require('../util/queryTools.php');	
 	
-	$diffSet = false;
+	$where = "";
 	// parse filtering parameters
-	if (isset($_GET[$COLUMN_QUESTION_DIFFICULTY])) {
-		$diffSet = true;
-		$where = $WHERE . "\"". $COLUMN_QUESTION_DIFFICULTY . "\"=" .
-			"'" . filter_var($_GET[$PARAM_DIFFICULTY], FILTER_SANITIZE_STRING)
+	if (isset($_GET[$PARAM_DIFFICULTY])) {
+		$clause = "\"". $COLUMN_QUESTION_DIFFICULTY . "\"=" . "'" 
+				. filter_var($_GET[$PARAM_DIFFICULTY], FILTER_SANITIZE_STRING)
 				. "'";
-	} else {
-		$where = "";
+		$where = appendWhereClause($where, $clause);
 	}
 	
-	if (isset($_GET[$COLUMN_QUESTION_CATEGORY])) {
+	if (isset($_GET[$PARAM_AUTHORID])) {
+		$clause = "\"". $COLUMN_QUESTION_AUTHORID . "\"=" . "'" 
+				. filter_var($_GET[$PARAM_AUTHORID], FILTER_SANITIZE_STRING)
+				. "'";
+		$where = appendWhereClause($where, $clause);
+	}
+	
+	if (isset($_GET[$PARAM_CATEGORY])) {
 		$categories = filter_var($_GET[$PARAM_CATEGORY], FILTER_SANITIZE_STRING);
 		$categoryArr = explode($CATEGORY_DELIM, $categories);
-		if ($diffSet) {
-			$where .= " AND";
-		}
-		else {
-			$where .= $WHERE;
-		}
-		$where .= " (";
+		
+		$clause .= " (";
 		$appendOr = false;
 		foreach ($categoryArr as $filter) {
 			if ($appendOr) {
-				$where .= " OR ";
+				$clause .= " OR ";
 			}
 			$appendOr = true;
-			$where .= ("\"" . $COLUMN_QUESTION_CATEGORY . "\"=" . "'" . $filter . "'");
+			$clause .= ("\"" . $COLUMN_QUESTION_CATEGORY . "\"=" . "'" . $filter . "'");
 		}
-		$where .= ")";
+		$clause .= ")";
+		$where = appendWhereClause($where, $clause);
 	}
 
 	// parse pagination parameters
