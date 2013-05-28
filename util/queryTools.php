@@ -11,6 +11,10 @@
 	$FROM = " FROM ";
 	$WHERE = " WHERE ";
 	$AND = " AND ";
+	$UPDATE = "UPDATE ";
+	$SET = " SET ";
+	$TRUE = "true";
+	$FALSE = "false";
 	$INSERT = "INSERT INTO ";
 	$VALUES = " VALUES ";
 	$ORDER_BY_DATE = " ORDER BY \"dateCreated\" DESC, \"questionId\" DESC";
