@@ -43,10 +43,10 @@
 			echo pg_fetch_result($rs, 0, 0);
 		}
 		else {
-			echo "0";
+			echo "-1";
 		}
 	}
 	else {
-		echo "0";
+		echo "-1";
 	}
 ?>
