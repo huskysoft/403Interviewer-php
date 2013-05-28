@@ -10,6 +10,7 @@
 	$PARAM_CATEGORY = 'category';
 	$PARAM_QUESTIONID = 'questionId';
 	$PARAM_SOLUTIONID = 'solutionId';
+	$PARAM_VOTE = 'vote';
 
 	$CATEGORY_DELIM = '-';
 	
