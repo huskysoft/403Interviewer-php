@@ -27,7 +27,7 @@
 		$categories = filter_var($_GET[$PARAM_CATEGORY], FILTER_SANITIZE_STRING);
 		$categoryArr = explode($CATEGORY_DELIM, $categories);
 		
-		$clause .= " (";
+		$clause = " (";
 		$appendOr = false;
 		foreach ($categoryArr as $filter) {
 			if ($appendOr) {
