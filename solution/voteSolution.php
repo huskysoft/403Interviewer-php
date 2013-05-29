@@ -36,7 +36,7 @@
 		$query = $UPDATE . $TABLE_SOLUTION . $SET;
 		$query .= ("\"" . $changeColumn . "\"= " . "\"");
 		$query .= ($changeColumn . "\" + 1" . $WHERE . "\"" . $PARAM_SOLUTIONID);
-		$query .= ("\"=" . $solutionId . $RETURNING . "\"" . $PARAM_SOLUTIONID . "\"");
+		$query .= ("\"=" . $solutionId . $RETURNING . "\"" . $COLUMN_SOLUTION_SOLUTIONID . "\"");
 
 		$rs = executeQuery($query);
 		if (pg_num_rows($rs) == 1) {
