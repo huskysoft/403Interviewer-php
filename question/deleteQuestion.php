@@ -25,8 +25,9 @@
 		$PARAM_QUESTIONID . "\"=" . "'" . $questionId . "'" . $AND . "\"" .
 		$PARAM_AUTHORID . "\"=" . "'" . $userId . "'" . $RETURNING .
 		"\"" . $COLUMN_QUESTION_QUESTIONID . "\"";
+
 	$rs = executeQuery($query);
-	if ($rs) {
+	if (pg_num_rows($rs) == 1) {
 		echo pg_fetch_result($rs, 0, 0);
 	}
 	else {

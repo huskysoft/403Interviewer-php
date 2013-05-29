@@ -11,7 +11,7 @@
 
 	// fetch vars
 	$solutionId = filter_var($_GET[$PARAM_SOLUTIONID], FILTER_SANITIZE_NUMBER_INT);
-	$vote = filter_var($_GET[$PARAM_VOTE, FILTER_SANITIZE_STRING);
+	$vote = filter_var($_GET[$PARAM_VOTE], FILTER_SANITIZE_STRING);
 	$email = filter_var(file_get_contents('php://input'), FILTER_SANITIZE_EMAIL);
 
 	// determine whether it is a like or a dislike
@@ -34,12 +34,12 @@
 
 		// prepare query
 		$query = $UPDATE . $TABLE_SOLUTION . $SET;
-		$query .= ("\"" . $changeColumn . "\"= " . "\"";
+		$query .= ("\"" . $changeColumn . "\"= " . "\"");
 		$query .= ($changeColumn . "\" + 1" . $WHERE . "\"" . $PARAM_SOLUTIONID);
 		$query .= ("\"=" . $solutionId . $RETURNING . "\"" . $PARAM_SOLUTIONID . "\"");
 
 		$rs = executeQuery($query);
-		if ($rs) {
+		if (pg_num_rows($rs) == 1) {
 			echo pg_fetch_result($rs, 0, 0);
 		}
 		else {
