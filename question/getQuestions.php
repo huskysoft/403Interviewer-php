@@ -8,7 +8,7 @@
 	require('../util/queryTools.php');	
 	
 	$where = "";
-	$language = $DEFAULT_LANGUAGE;
+	$language = ("'" . $DEFAULT_LANGUAGE . "'");
 
 	// parse filtering parameters
 	if (isset($_GET[$PARAM_DIFFICULTY])) {
