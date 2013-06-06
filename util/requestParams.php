@@ -20,4 +20,5 @@
 	$PARAM_OFFSET = 'offset';
 	$PARAM_RANDOM = 'random';
 	$PARAM_EMAIL = 'email';
+	$PARAM_LANGUAGE = 'language';
 ?>

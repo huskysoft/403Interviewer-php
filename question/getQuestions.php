@@ -8,6 +8,8 @@
 	require('../util/queryTools.php');	
 	
 	$where = "";
+	$language = $DEFAULT_LANGUAGE;
+
 	// parse filtering parameters
 	if (isset($_GET[$PARAM_DIFFICULTY])) {
 		$clause = "\"". $COLUMN_QUESTION_DIFFICULTY . "\"=" . "'" 
@@ -37,6 +39,12 @@
 			$clause .= ("\"" . $COLUMN_QUESTION_CATEGORY . "\"=" . "'" . $filter . "'");
 		}
 		$clause .= ")";
+		$where = appendWhereClause($where, $clause);
+	}
+
+	if (isset($_GET[$PARAM_LANGUAGE])) {
+		$language = filter_var($_GET[$PARAM_LANGUAGE], FILTER_SANITIZE_STRING);
+		$clause = ("\"" . $PARAM_LANGUAGE . "\"=" . "'" . $language . "'");
 		$where = appendWhereClause($where, $clause);
 	}
 

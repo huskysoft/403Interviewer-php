@@ -15,6 +15,7 @@
 	$SET = " SET ";
 	$TRUE = "true";
 	$FALSE = "false";
+       $DEFAULT_LANGUAGE = "EN";
 	$INSERT = "INSERT INTO ";
 	$VALUES = " VALUES ";
 	$ORDER_BY_DATE = " ORDER BY \"dateCreated\" DESC, \"questionId\" DESC";

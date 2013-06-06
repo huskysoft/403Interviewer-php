@@ -12,6 +12,7 @@
 	$COLUMN_QUESTION_DIFFICULTY = "difficulty";
 	$COLUMN_QUESTION_DATE = "dateCreated";
 	$COLUMN_QUESTION_CATEGORY = "category";
+	$COLUMN_QUESTION_LANGUAGE = "language";
 	
 	$TABLE_SOLUTION = "\"Solution\"";
 	$COLUMN_SOLUTION_SOLUTIONID = "solutionId";

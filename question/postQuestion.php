@@ -19,12 +19,13 @@
 	$questionDifficulty = "'" . filter_var($json->$COLUMN_QUESTION_DIFFICULTY, FILTER_SANITIZE_STRING) . "'";
 	$questionCategory = "'" . filter_var($json->$COLUMN_QUESTION_CATEGORY, FILTER_SANITIZE_STRING) . "'";
 	$dateCreated = filter_var($json->$COLUMN_QUESTION_DATE, FILTER_SANITIZE_NUMBER_INT);
+	$language = filter_var($json->$COLUMN_QUESTION_LANGUAGE, FILTER_SANITIZE_STRING);
 		
 	// build query
 	$query = $INSERT . $TABLE_QUESTION . $VALUES;
 	$query .= ("(DEFAULT, " . $authorId . ", " . $questionText . ", " . $questionTitle);
 	$query .= (", 0, 0, " . $questionDifficulty . ", " . $questionCategory);
-	$query .= (", " . $dateCreated . ")");
+	$query .= (", " . $dateCreated . ", " . $language . ")");
 	$query .= (" RETURNING \"" . $COLUMN_QUESTION_QUESTIONID . "\"");
 	
 	// execute query and return ID
